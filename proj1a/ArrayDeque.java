@@ -31,7 +31,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int idx) {
-        if (idx >= size) return null;
+        if (idx >= size) { return null; }
         return items[(nextFirst + 1 + idx)%capacity];
     }
 
@@ -57,7 +57,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {return null;}
         shrink();
 
         int last = idxAdd(nextLast,-1);
@@ -69,7 +69,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {return null;}
         shrink();
 
         int first = idxAdd(nextFirst,1);
@@ -110,17 +110,6 @@ public class ArrayDeque<T> {
         double usage_ratio = (double) size/capacity;
         if (usage_ratio < USAGE_RATIO && capacity > INITIAL_CAPACITY) {
             resize(capacity/2);
-        }
-    }
-
-    public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        for (int i = 0; i < 100; i++) {
-            a.addFirst(1);
-        }
-
-        for (int i = 0; i < 30; i++) {
-            a.removeFirst();
         }
     }
 

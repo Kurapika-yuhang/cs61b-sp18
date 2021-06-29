@@ -97,20 +97,4 @@ public class LinkedListDeque<T> {
         }
     }
 
-
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> l = new LinkedListDeque<>();
-        l.addFirst(1);
-        l.addFirst(0);
-        l.addLast(2);
-        l.printDeque();
-
-        int a = l.getRecursive(0);
-        int a1 = l.get(0);
-
-
-        int b = l.getRecursive(1);
-        int b1 = l.get(1);
-
-    }
 }
