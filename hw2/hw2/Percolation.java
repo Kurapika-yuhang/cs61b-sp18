@@ -16,6 +16,10 @@ public class Percolation {
     public Percolation(int N) {
         // create N-by-N grid, with all sites initially blocked
 
+        if (N <= 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.N = N;
         top = N*N;
         bottom = N*N + 1;
@@ -64,6 +68,9 @@ public class Percolation {
     }
     public boolean percolates() {
         // does the system percolate?
+        if (numOfOpenSites == 0) {
+            return false;
+        }
         return sites.connected(top, bottom);
     }
 
