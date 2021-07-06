@@ -1,8 +1,7 @@
 package hw2;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-import java.lang.IndexOutOfBoundsException;
-import java.lang.IllegalArgumentException;
+
 
 public class Percolation {
     private int N;
@@ -21,8 +20,8 @@ public class Percolation {
         }
 
         this.N = N;
-        top = N*N;
-        bottom = N*N + 1;
+        top = N * N;
+        bottom = N * N + 1;
         numOfOpenSites = 0;
 
         // openFlag initialization：all false
@@ -33,20 +32,21 @@ public class Percolation {
             }
         }
 
-        // sites initialization: 第一行与top连，最后一行与bottom连 （有backwash 只为了方便isfull（）为const time）
+        // sites initialization: 第一行与top连，最后一行与bottom连
+        // （有backwash 只为了方便isfull（）为const time）
         sites = new WeightedQuickUnionUF(N * N + 2);
         for (int i = 0; i < N; i++) {
-            sites.union(top,xyTo1D(0, i));
+            sites.union(top, xyTo1D(0, i));
         }
 
         for (int i = 0; i < N; i++) {
-            sites.union(bottom,xyTo1D(N - 1, i));
+            sites.union(bottom, xyTo1D(N - 1, i));
         }
 
         // sitesWithoutBottom initialization: 第一行与top连 没有bottom（防止backwash）
         sitesWithoutBottom = new WeightedQuickUnionUF(N * N + 1);
         for (int i = 0; i < N; i++) {
-            sitesWithoutBottom.union(top,xyTo1D(0, i));
+            sitesWithoutBottom.union(top, xyTo1D(0, i));
         }
     }
 
@@ -96,13 +96,13 @@ public class Percolation {
 
     private void unionAround(int row, int col) {
         validate(row, col);
-        int[][] dirArray = new int[][] {{0,1},{0,-1},{1,0},{-1,0}};
+        int[][] dirArray = new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int[] dir: dirArray) {
             int rowAround = row + dir[0];
             int colAround = col + dir[1];
-            if (isValidRange(rowAround,colAround) && isOpen(rowAround,colAround)) {
-                sites.union(xyTo1D(row,col), xyTo1D(rowAround, colAround));
-                sitesWithoutBottom.union(xyTo1D(row,col), xyTo1D(rowAround, colAround));
+            if (isValidRange(rowAround, colAround) && isOpen(rowAround, colAround)) {
+                sites.union(xyTo1D(row, col), xyTo1D(rowAround, colAround));
+                sitesWithoutBottom.union(xyTo1D(row, col), xyTo1D(rowAround, colAround));
             }
         }
     }
@@ -125,8 +125,8 @@ public class Percolation {
         // use for unit testing (not required)
         Percolation percolation = new Percolation(2);
         System.out.println(percolation.percolates());  // false
-        percolation.open(0,0);
-        percolation.open(1,0);
+        percolation.open(0, 0);
+        percolation.open(1, 0);
         System.out.println(percolation.percolates());  // true
     }
 }

@@ -3,8 +3,6 @@ package hw2;
 import edu.princeton.cs.introcs.StdRandom;
 import edu.princeton.cs.introcs.StdStats;
 
-import java.lang.IllegalArgumentException;
-
 public class PercolationStats {
     private int N;  // N-by-N grid
     private int T;  // T independent experiments
@@ -17,11 +15,11 @@ public class PercolationStats {
             // 一次实验 算出一个threshold的值
             Percolation p = pf.make(N);
             while (!p.percolates()) {
-                int row = StdRandom.uniform(0,N);
-                int col = StdRandom.uniform(0,N);
+                int row = StdRandom.uniform(0, N);
+                int col = StdRandom.uniform(0, N);
                 p.open(row, col);
             }
-            thresholds[i] = (double) p.numberOfOpenSites()/(N*N);
+            thresholds[i] = (double) p.numberOfOpenSites() / (N * N);
         }
     }
 
