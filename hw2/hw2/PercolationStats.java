@@ -14,6 +14,9 @@ public class PercolationStats {
             throw new IllegalArgumentException();
         }
 
+        this.N = N;
+        this.T = T;
+
         thresholds = new double[T];
         for (int i = 0; i < T; i++) {
             // 一次实验 算出一个threshold的值
@@ -39,12 +42,11 @@ public class PercolationStats {
 
     public double confidenceLow() {
         // low endpoint of 95% confidence interval
-        //return mean() - 1.96 / Math.sqrt(T) * stddev();
-        return mean() - 1.96 * stddev() / Math.sqrt(T) ; // 先乘后除和先除后乘的区别？
+        return mean() - 1.96 * stddev() / Math.sqrt(T);
     }
 
     public double confidenceHigh() {
         // high endpoint of 95% confidence interval
-        return mean() + 1.96 * stddev() / Math.sqrt(T) ;
+        return mean() + 1.96 * stddev() / Math.sqrt(T);
     }
 }
