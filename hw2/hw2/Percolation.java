@@ -52,6 +52,10 @@ public class Percolation {
     public boolean isFull(int row, int col) {
         // is the site (row, col) full?
         validate(row, col);
+        if (!isOpen(row, col)) {
+            return false;
+        }
+
         return sitesWithoutBottom.connected(top, xyTo1D(row, col));
     }
     public int numberOfOpenSites() {
@@ -66,6 +70,7 @@ public class Percolation {
     public void open(int row, int col) {
         // open the site (row, col) if it is not open already
         validate(row, col);
+
         if (isOpen(row, col)) {
             return;
         }
@@ -104,10 +109,7 @@ public class Percolation {
     }
 
     private void validate(int row, int col) {
-        if (row < 0 || col < 0) {
-            throw new IllegalArgumentException();
-        }
-        if (row >= N || col >= N) {
+        if (!isValidRange(row, col)) {
             throw new IndexOutOfBoundsException();
         }
     }

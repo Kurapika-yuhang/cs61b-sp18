@@ -43,7 +43,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb[last] = x;
 
         fillCount += 1;
-        last = idxAdd(last,1);
+        last = idxAdd(last, 1);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         T res = rb[first];
         rb[first] = null;
 
-        first = idxAdd(first,1);
+        first = idxAdd(first, 1);
         fillCount -= 1;
         return res;
     }
@@ -99,13 +99,13 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         @Override
         public T next() {
             T res = rb[poz];
-            poz = (poz + 1)%capacity;
+            poz = (poz + 1) % capacity;
             count += 1;
             return res;
         }
     }
 
     private int idxAdd(int i, int j) {
-        return (i + j + capacity)%capacity;
+        return (i + j + capacity) % capacity;
     }
 }
