@@ -117,6 +117,7 @@ public class Board implements WorldState {
         return res;
     }
 
+    @Override
     public boolean equals(Object y) {
 
         if (y == null || !y.getClass().equals(this.getClass())) {
@@ -136,6 +137,11 @@ public class Board implements WorldState {
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.hashCode();
     }
 
     public String toString() {

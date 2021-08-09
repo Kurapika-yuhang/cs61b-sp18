@@ -9,7 +9,7 @@ public class Solver {
     private List<WorldState> solution;
     private HashMap<WorldState, Integer> expMap;
 
-    public class SearchNode {
+    private class SearchNode {
 
         private WorldState state;
         private int moves;  // the number of moves made to reach this world state from the initial state.
@@ -22,7 +22,7 @@ public class Solver {
         }
     }
 
-    public class SearchNodeComparator implements Comparator<SearchNode> {
+    private class SearchNodeComparator implements Comparator<SearchNode> {
 
         @Override
         public int compare(SearchNode o1, SearchNode o2) {
